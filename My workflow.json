@@ -1,0 +1,639 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://techcrunch.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3e10b994-0107-42a7-a78f-a89bc408e873",
+      "name": "Ai/Tech"
+    },
+    {
+      "parameters": {
+        "url": "https://techcrunch.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        192
+      ],
+      "id": "0795d485-07ea-4ca8-88cd-75f6254989d0",
+      "name": "Tech/product"
+    },
+    {
+      "parameters": {
+        "url": "https://www.artificialintelligence-news.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        384
+      ],
+      "id": "efa15777-87f4-4b0a-95ed-c8dab147cdde",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "10"
+            },
+            {
+              "name": "apiKey",
+              "value": "7886f1f001254de99f180a086a629d69"
+            },
+            {
+              "name": "q",
+              "value": "Sequoia-backed startup funding OR Sequoia Capital portfolio raised"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        720
+      ],
+      "id": "9aa0c679-52f2-4d4d-99eb-1424a443c941",
+      "name": "AI news API"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "10"
+            },
+            {
+              "name": "apiKey",
+              "value": "7886f1f001254de99f180a086a629d69"
+            },
+            {
+              "name": "q",
+              "value": "startup raised OR Series A OR Series B OR venture funding"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        880
+      ],
+      "id": "d284c4e8-d6d5-4d60-a463-c0b65938f983",
+      "name": "Funding News"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "10"
+            },
+            {
+              "name": "apiKey",
+              "value": "7886f1f001254de99f180a086a629d69"
+            },
+            {
+              "name": "q",
+              "value": "geopolitics OR war OR conflict OR sanctions OR military OR border tensions OR US China OR Russia Ukraine OR Middle East OR India Pakistan"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        1040
+      ],
+      "id": "d4abc122-6161-428b-96d4-55cc4fb50057",
+      "name": "Geopolitics"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "1284de6b-cadb-4c1c-9c39-ed7ed12230bc",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        624,
+        48
+      ],
+      "id": "f63e979d-46e3-412a-bf81-1a4e4948cf72",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        496,
+        592
+      ],
+      "id": "4c26c4a9-4e97-4f64-9427-162f1a797fd5",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        720,
+        576
+      ],
+      "id": "5511f5c7-9827-41cc-87b4-6875579a1229",
+      "name": "Merge3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        864,
+        256
+      ],
+      "id": "057e0926-246f-4cd3-b17c-30ced1596d2e",
+      "name": "Merge4"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=You are writing a high-quality, sharp, curated morning intelligence brief.\n\nThis is NOT a generic summary.\nThis is a selective, high-signal briefing.\n\nDo NOT sound robotic.\nDo NOT explain your process.\nDo NOT mention JSON or data.\nDo NOT wrap output in code blocks.\nReturn ONLY clean HTML.\n\nTone:\n- crisp\n- confident\n- insightful\n- no fluff\n\n---\n\nStart like this:\n\n<p>Good morning, Kinjal,</p>\n<p>{{ $json[\"quote\"] }}</p>\n<p>Here’s what actually matters from the last 24 hours.</p>\n\n---\n\n<h2>AI</h2>\n\nSelect the **top 3–5 most important AI developments**.\n\nPrioritize:\n- model launches\n- big tech moves\n- product shifts\n- real-world adoption\n- anything shaping the future of AI\n\nFor each:\n- <b>Clickable headline</b>\n- 1 tight summary sentence\n- <i>Why it matters:</i> 1 strong insight\n\nDO NOT return fewer than 3 items unless absolutely no data exists.\n\n---\n\n<h2>Funding & Startups</h2>\n\nFocus ONLY on meaningful signals.\n\nPrioritize:\n- YC startups\n- Sequoia-backed companies\n- large or strategic funding rounds\n- emerging categories (AI infra, robotics, etc.)\n\nFor each:\n- clickable headline\n- funding details (amount, investor if available)\n- <i>Why it matters:</i> 1 insight about market direction\n\n---\n\n<h2>Geopolitics</h2>\n\nFocus on:\n- conflicts\n- power shifts\n- US–China relations\n- wars\n- sanctions\n- global economic impact\n\nAvoid noise.\n\nFor each:\n- clickable headline\n- 1-line summary\n- <i>Why it matters:</i> impact on markets / tech / global stability\n\n---\n\n<h2>What This Means (For You)</h2>\n\nGive 3 sharp bullets:\n- how this affects careers\n- what skills are rising\n- where opportunities are forming\n\nMake it practical, not generic.\n\n---\n\n<h2>Watchlist</h2>\n\n2–3 short bullets:\n- what to watch next\n- what might change soon\n\n---\n\nRules:\n- MAX 4 items per section\n- NO empty sections\n- NO fluff\n- NO repetition\n- keep it tight\n- remove weak news\n- combine similar items\n\nUse compact HTML:\n- no excessive spacing\n- no large gaps\n- use <ul> and <li> cleanly\n\n---\n\nHere is the data:\n{{ JSON.stringify($input.all().slice(0,15), null, 2) }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1472,
+        240
+      ],
+      "id": "be4bb245-244c-4d1b-8ab2-46db88a6500f",
+      "name": "Message a model",
+      "executeOnce": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "R7LJhqZkRN1MFyuc",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0352ed29-a5f0-4152-ba4c-a9369f2b24a0",
+              "name": "title",
+              "value": "={{ $json[\"title\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "ecba5c51-6a41-46c9-be91-733163c8f204",
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b65c5bcf-8a54-4457-80d8-7a713e814c99",
+              "name": "contentSnippet",
+              "value": "={{ $json[\"contentSnippet\"] \n\n $json[\"description\"] \n\n $json[\"content\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "738f1fd3-4e06-4904-84e3-f44898f5bb66",
+              "name": "pubDate",
+              "value": "={{ $json[\"pubDate\"] \n\n $json[\"publishedAt\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1008,
+        384
+      ],
+      "id": "5907eadb-d12e-4340-b024-f779a6bcc093",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "kinjal1.sharma@gmail.com",
+        "subject": "=Morning Brief - {{ $now.format('yyyy-MM-dd') }}",
+        "message": "={{ $json[\"output\"][0][\"content\"][0][\"text\"] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        240
+      ],
+      "id": "09435b51-1cb0-46af-ab4f-66706a453d02",
+      "name": "Send a message",
+      "webhookId": "a7c9fae4-57b4-4c3a-b0c3-0ca522c30038",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YzA3qXT3egTV0g9Y",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "language",
+              "value": "en"
+            },
+            {
+              "name": "sortBy",
+              "value": "publishedAt"
+            },
+            {
+              "name": "pageSize",
+              "value": "10"
+            },
+            {
+              "name": "apiKey",
+              "value": "7886f1f001254de99f180a086a629d69"
+            },
+            {
+              "name": "q",
+              "value": "YC startup funding OR Y Combinator startup raised"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        560
+      ],
+      "id": "f906b720-63cb-4d7a-8584-9c23cbb57752",
+      "name": "YC"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Remove duplicates + keep recent + prioritize strong signals\n\nconst seen = new Set();\nconst filtered = [];\n\nfor (const item of items) {\n  const title = item.json.title;\n\n  if (!title || seen.has(title)) continue;\n  seen.add(title);\n\n  filtered.push(item);\n}\n\n// Optional: prioritize by keywords\nconst priorityKeywords = [\n  \"AI\",\n  \"OpenAI\",\n  \"Google\",\n  \"startup\",\n  \"funding\",\n  \"YC\",\n  \"Sequoia\",\n  \"war\",\n  \"China\",\n  \"US\",\n  \"sanctions\",\n  \"conflict\"\n];\n\nfiltered.sort((a, b) => {\n  const aScore = priorityKeywords.some(k => a.json.title?.includes(k)) ? 1 : 0;\n  const bScore = priorityKeywords.some(k => b.json.title?.includes(k)) ? 1 : 0;\n  return bScore - aScore;\n});\n\n// Keep top 15\nreturn filtered.slice(0, 15);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1152,
+        208
+      ],
+      "id": "831c1dca-66e9-42b1-a573-d4d34486659e",
+      "name": "Code(filternews)"
+    },
+    {
+      "parameters": {
+        "jsCode": "const quotes = [\n  \"You’ve got this today.\",\n  \"Keep going. You’re building something meaningful.\",\n  \"Small steps today, big results tomorrow.\",\n  \"Show up today. That’s enough.\",\n  \"Stay consistent. It compounds.\",\n  \"You’re closer than you think.\"\n];\n\nconst day = Math.floor(Date.now() / (1000 * 60 * 60 * 24));\nconst index = Math.floor(day / 2) % quotes.length;\n\nreturn [{ quote: quotes[index] }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1296,
+        368
+      ],
+      "id": "1e8d1fa5-e41c-4d59-ab93-3d146642bece",
+      "name": "Code (quote)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -128,
+        176
+      ],
+      "id": "544f55c0-5b5e-47aa-bef9-049d7eeb0fd5",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Ai/Tech": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tech/product": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "AI news API": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Funding News": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Geopolitics": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code(filternews)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YC": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code (quote)": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code(filternews)": {
+      "main": [
+        [
+          {
+            "node": "Code (quote)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Ai/Tech",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Tech/product",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "YC",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI news API",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Funding News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Geopolitics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": -1
+  },
+  "versionId": "73ea4726-c087-42ec-b096-64df0142ae19",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b866bd8a319963b9176f10f155d96d493756388f7a6934c8d5a1e4d730f3f62f"
+  },
+  "id": "RqR1ukZUhFfBSxb5",
+  "tags": []
+}
