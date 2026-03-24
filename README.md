@@ -48,7 +48,7 @@ Each morning, the system sends a brief with:
 
 ## Architecture
 
-![Workflow](images/workflow.png)
+![Workflow](images/My workflow.png)
 
 
 ## Example Output
